@@ -1,2 +1,2 @@
-# mobile-store-backend
-INSSIDE Mobile Store - Backend
+# store-backend
+Store - Backend
