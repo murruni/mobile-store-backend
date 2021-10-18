@@ -27,7 +27,7 @@ public class Cliente {
 	private String nombres;
 
 	@Column(nullable = false)
-	private String apellidos;
+	private String apellido;
 
 	@Column(nullable = false)
 	private String dni;
