@@ -10,4 +10,5 @@ import net.store.model.entity.cliente.Cliente;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 	List<Cliente> findByApellido(String apellido);
+	List<Cliente> findByDni(String dni);
 }

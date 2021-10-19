@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -37,11 +36,9 @@ public class OrdenCompra {
 	private BigDecimal importeTotal;
 	
 	@ManyToOne
-	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 	
-	@OneToMany
-	@JoinColumn(name = "orden_compra_id")
+	@OneToMany(mappedBy = "ordenCompra")
 	private Set<OrdenCompraItem> items;
 	
 }
