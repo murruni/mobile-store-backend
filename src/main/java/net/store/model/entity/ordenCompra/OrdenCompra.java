@@ -13,14 +13,21 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import net.store.model.entity.EntityBase;
 import net.store.model.entity.cliente.Cliente;
 import net.store.model.entity.ordenCompraItem.OrdenCompraItem;
 
 @Entity
 @Table(name = "ORDEN_COMPRA")
-@Data
-public class OrdenCompra {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class OrdenCompra extends EntityBase<Long>{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")

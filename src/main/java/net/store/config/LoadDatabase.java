@@ -2,7 +2,6 @@ package net.store.config;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -35,8 +34,6 @@ public class LoadDatabase {
 			loadEntitiesMarca();
 			loadEntitiesTelefono();
 			loadEntitiesCliente();
-			loadEntitiesOrdenCompra();
-
 		};
 	}
 
@@ -66,45 +63,30 @@ public class LoadDatabase {
 	}
 
 	private void loadEntitiesTelefono() {
-		Random rand = new Random();
+		Marca marca;
+		
+		marca = marcaRepository.findByDescripcion("Motorola").get(0);
+		newTelefono(marca, "G3", "0001", new BigDecimal("20512.23"));
+		newTelefono(marca, "G5", "0002", new BigDecimal("20112.23"));
+		newTelefono(marca, "G9", "0003", new BigDecimal("20512.23"));
 
-		Marca motorola = marcaRepository.findByDescripcion("Motorola").get(0);
-		Marca samsung = marcaRepository.findByDescripcion("Samsung").get(0);
-		Marca iphone = marcaRepository.findByDescripcion("Iphone").get(0);
-		List<String> telefonosMotorola = List.of("G3", "G5", "G9");
-		List<String> telefonosSamsung = List.of("Galaxy 6", "Galaxy 10", "Galaxy Note");
-		List<String> telefonosIphone = List.of("6", "Xr", "13");
+		marca = marcaRepository.findByDescripcion("Samsung").get(0);
+		newTelefono(marca, "Galaxy 6", "0004", new BigDecimal("20512.23"));
+		newTelefono(marca, "Galaxy 6", "0005", new BigDecimal("20512.23"));
+		newTelefono(marca, "Galaxy 6", "0006", new BigDecimal("30512.23"));
 
-		telefonosMotorola.forEach(mod -> {
-			Telefono telefono = new Telefono();
-			telefono.setDescripcion(mod);
-			telefono.setMarca(motorola);
-			telefono.setCodigo("m" + rand.nextInt());
-			telefono.setPrecio(new BigDecimal(rand.nextDouble() * 1000));
-			telefonoRepository.save(telefono);
-		});
-
-		telefonosSamsung.forEach(mod -> {
-			Telefono telefono = new Telefono();
-			telefono.setDescripcion(mod);
-			telefono.setMarca(samsung);
-			telefono.setCodigo("s" + rand.nextInt());
-			telefono.setPrecio(new BigDecimal(rand.nextDouble() * 1000));
-			telefonoRepository.save(telefono);
-		});
-		telefonosIphone.forEach(mod -> {
-			Telefono telefono = new Telefono();
-			telefono.setDescripcion(mod);
-			telefono.setMarca(iphone);
-			telefono.setCodigo("i" + rand.nextInt());
-			telefono.setPrecio(new BigDecimal(rand.nextDouble() * 1000));
-			telefonoRepository.save(telefono);
-		});
+		marca = marcaRepository.findByDescripcion("Iphone").get(0);
+		newTelefono(marca, "Galaxy 6", "0007", new BigDecimal("70512.23"));
+		newTelefono(marca, "Galaxy Xr", "0008", new BigDecimal("140512.23"));
+		newTelefono(marca, "Galaxy 13", "0009", new BigDecimal("253512.23"));
 	}
 
-	private void loadEntitiesOrdenCompra() {
-		// TODO Auto-generated method stub
-
+	private void newTelefono(Marca marca, String descripcion, String codigo, BigDecimal precio) {
+		Telefono telefono = new Telefono();
+		telefono.setDescripcion(descripcion);
+		telefono.setMarca(marca);
+		telefono.setCodigo(codigo);
+		telefono.setPrecio(precio);
+		telefonoRepository.save(telefono);
 	}
-
 }

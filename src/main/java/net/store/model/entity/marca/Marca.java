@@ -10,21 +10,31 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import net.store.model.entity.EntityBase;
 import net.store.model.entity.telefono.Telefono;
 
 @Entity
 @Table(name = "MARCA")
-@Data
-public class Marca {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Marca extends EntityBase<Long>{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
-	
+
 	@Column(nullable = false)
 	private String descripcion;
 
+	@JsonIgnore	
 	@OneToMany(mappedBy = "marca")
 	private Set<Telefono> telefonos;
 }

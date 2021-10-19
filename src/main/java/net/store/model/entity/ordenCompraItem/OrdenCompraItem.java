@@ -8,14 +8,21 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import net.store.model.entity.EntityBase;
 import net.store.model.entity.ordenCompra.OrdenCompra;
 import net.store.model.entity.telefono.Telefono;
 
 @Entity
 @Table(name = "ORDEN_COMPRA_ITEM")
-@Data
-public class OrdenCompraItem {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class OrdenCompraItem extends EntityBase<Long>{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
